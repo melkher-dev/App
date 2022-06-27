@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ResultController extends Controller
 {
+    /**
+     * index
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
     public function index()
     {
         $data = [
@@ -35,6 +40,12 @@ class ResultController extends Controller
         return view('results', $data);
     }
 
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return bool
+     */
     public function store(Request $request)
     {
         $result = new Result();

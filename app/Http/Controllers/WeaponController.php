@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class WeaponController extends Controller
 {
+    /**
+     * index
+     *
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
     public function index()
     {
         return view('weapons', [
@@ -14,6 +19,12 @@ class WeaponController extends Controller
         ]);
     }
 
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return bool
+     */
     public function store(Request $request)
     {
         $weapon = new Weapon();
