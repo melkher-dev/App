@@ -2,14 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Result;
-use App\Models\Weapon;
-use App\Models\Country;
-use Illuminate\Http\Request;
 use App\Http\Requests\StoreResultRequest;
+use App\Services\ResultService;
 
 class ResultController extends Controller
 {
+    protected $resultService;
+
+    /**
+     * __construct
+     *
+     * @param \App\Services\ResultService $resultService
+     */
+    public function __construct(ResultService $resultService)
+    {
+        $this->resultService = $resultService;
+    }
+
     /**
      * index
      *
@@ -17,28 +26,7 @@ class ResultController extends Controller
      */
     public function index()
     {
-        $data = [
-            'results' => Result::paginate(5),
-            'results_huy' => Result::all(),
-            'weapons' => Weapon::all(),
-            'countries' => Country::all(),
-        ];
-
-        //сумма всех amount
-        $summ = Result::sum('amount');
-
-        //collection
-        $data['results_huy'] = $data['results_huy']->map(function ($row) use ($summ) {
-            $data = [];
-            if ($summ == '0') {
-                throw new \Exception('error - на ноль делить нельзя!!');
-            }
-            $data[$row->country->name][$row->weapon->name] = $row->amount / $summ * 100;
-
-            return $data;
-        });
-
-        return view('results', $data);
+        return view('results', $this->resultService->getResult());
     }
 
     /**
@@ -49,11 +37,11 @@ class ResultController extends Controller
      */
     public function store(StoreResultRequest $request)
     {
-        $result = new Result();
-        $result->country_id = $request->country_id;
-        $result->weapon_id = $request->weapon_id;
-        $result->amount = $request->amount;
-        $result->save();
+        $this->resultService->saveResult($request->only(
+            'country_id',
+            'weapon_id',
+            'amount'
+        ));
 
         return redirect('/results');
     }

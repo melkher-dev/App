@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Weapon;
-use Illuminate\Http\Request;
+use App\Services\WeaponService;
 use App\Http\Requests\StoreWeaponRequest;
 
 class WeaponController extends Controller
 {
+    protected $weaponService;
+
+    /**
+     * construct
+     *
+     * @param \App\Services\WeaponService $weaponService
+     */
+    public function __construct(WeaponService $weaponService)
+    {
+        $this->weaponService = $weaponService;
+    }
+
     /**
      * index
      *
@@ -15,22 +26,20 @@ class WeaponController extends Controller
      */
     public function index()
     {
-        return view('weapons', [
-            'weapons' => Weapon::paginate(10),
-        ]);
+        return view('weapons', $this->weaponService->getWeapon());
     }
 
     /**
      * store
      *
-     * @param  mixed $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public function store(StoreWeaponRequest $request)
     {
-        $weapon = new Weapon();
-        $weapon->name = $request->weapon;
-        $weapon->save();
+        $this->weaponService->saveWeapon($request->only(
+            'weapon'
+        ));
 
         return redirect()->route('weapons');
     }

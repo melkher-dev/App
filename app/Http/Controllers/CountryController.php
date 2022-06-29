@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
-use Illuminate\Http\Request;
+use App\Services\CountryService;
 use App\Http\Requests\StoreCountryRequest;
 
 class CountryController extends Controller
 {
+    protected $countryService;
+
+    /**
+     * construct
+     *
+     * @param \App\Services\CountryService $countryService
+     */
+    public function __construct(CountryService $countryService)
+    {
+        $this->countryService = $countryService;
+    }
+
     /**
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function index()
     {
-        return view('countries', [
-            'countries' => Country::paginate(10),
-        ]);
+        return view('countries', $this->countryService->getCountry());
     }
 
     /**
@@ -24,9 +33,9 @@ class CountryController extends Controller
      */
     public function store(StoreCountryRequest $request)
     {
-        $country = new Country();
-        $country->name = $request->country;
-        $country->save();
+        $this->countryService->saveCountry($request->only(
+            'country'
+        ));
 
         return redirect()->route('countries');
     }

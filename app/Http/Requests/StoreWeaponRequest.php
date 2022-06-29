@@ -25,7 +25,7 @@ class StoreWeaponRequest extends FormRequest
     public function rules()
     {
         return [
-            'weapon' => 'required|alpha|max:100',
+            'weapon' => 'required|string|max:100',
         ];
     }
 

@@ -25,7 +25,7 @@ class StoreCountryRequest extends FormRequest
     public function rules()
     {
         return [
-            'country' => 'required|alpha|max:100',
+            'country' => 'required|string|max:100',
         ];
     }
 
