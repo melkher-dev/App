@@ -15,23 +15,35 @@
                         <div class="container">
                             <div class="col-2">
                                 <x-label for="country_id">Country</x-label>
-                                <x-select class="form-control mb-2" name="country_id">
+                                <x-select
+                                    class="form-control mb-2 @error ('country_id') is-invalid @enderror"
+                                    name="country_id"
+                                >
                                     @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">
+                                    <option @if (old('country_id') == $country->id) selected="selected" @endif value="{{ $country->id }}">
                                         {{ $country->name }}
                                     </option>
                                     @endforeach
                                 </x-select>
+                                @error('country_id')
+                                <div style="color: red" class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-2">
                                 <x-label for="weapon_id">Weapon</x-label>
-                                <x-select class="form-control mb-2" name="weapon_id">
+                                <x-select
+                                    class="form-control mb-2 @error ('weapon_id') is-invalid @enderror"
+                                    name="weapon_id"
+                                >
                                     @foreach ($weapons as $weapon)
-                                    <option value="{{ $weapon->id }}">
+                                    <option @if (old('weapon_id') == $weapon->id) selected="selected" @endif value="{{ $weapon->id }}">
                                         {{ $weapon->name }}
                                     </option>
                                     @endforeach
                                 </x-select>
+                                @error('weapon_id')
+                                <div style="color: red" class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-2 mt-2">
                                 <x-label for="amount" :value="__('Amount')" />

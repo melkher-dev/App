@@ -14,7 +14,6 @@
 
                         <div class="mt-4">
                             <x-label for="country" :value="__('Country')" />
-
                             <x-input id="country" class="block mt-1 w-full @error ('country') is-invalid @enderror"
                                 type="country" name="country" value="{{ old('country') }}" />
                             @error('country')

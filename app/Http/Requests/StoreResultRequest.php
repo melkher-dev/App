@@ -25,6 +25,8 @@ class StoreResultRequest extends FormRequest
     public function rules()
     {
         return [
+            'country_id' => 'required|integer|exists:App\Models\Country,id',
+            'weapon_id' => 'required|integer|exists:App\Models\Weapon,id',
             'amount' => 'required|integer',
         ];
     }
@@ -37,7 +39,9 @@ class StoreResultRequest extends FormRequest
     public function messages()
     {
         return [
-        'amount.required' => 'Please enter an amount.',
+            'country_id' => 'Please select a country',
+            'weapon_id' => 'Please select a weapon',
+            'amount.required' => 'Please enter an amount.',
         ];
     }
 }
