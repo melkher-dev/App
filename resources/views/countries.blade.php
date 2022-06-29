@@ -15,7 +15,11 @@
                         <div class="mt-4">
                             <x-label for="country" :value="__('Country')" />
 
-                            <x-input id="country" class="block mt-1 w-full" type="country" name="country" />
+                            <x-input id="country" class="block mt-1 w-full @error ('country') is-invalid @enderror"
+                                type="country" name="country" value="{{ old('country') }}" />
+                            @error('country')
+                            <div style="color: red" class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-4">

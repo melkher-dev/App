@@ -35,7 +35,11 @@
                             </div>
                             <div class="col-2 mt-2">
                                 <x-label for="amount" :value="__('Amount')" />
-                                <x-input class="form-control mb-2" type="number" name="amount" />
+                                <x-input class="form-control mb-2 @error ('amount') is-invalid @enderror" type="number"
+                                    name="amount" value="{{ old('amount') }}" />
+                                @error('amount')
+                                <div style="color: red" class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="col-1 mt-2">
                                 <x-button type="submit"

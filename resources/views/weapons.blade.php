@@ -15,7 +15,11 @@
                         <div class="mt-4">
                             <x-label for="weapon" :value="__('Weapon')" />
 
-                            <x-input id="weapon" class="block mt-1 w-full" type="weapon" name="weapon" />
+                            <x-input id="weapon" class="block mt-1 w-full @error ('weapon') is-invalid @enderror"
+                                type="weapon" name="weapon" value="{{ old('weapon') }}" />
+                            @error('weapon')
+                            <div style="color: red" class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mt-4">

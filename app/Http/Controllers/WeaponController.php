@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Weapon;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreWeaponRequest;
 
 class WeaponController extends Controller
 {
@@ -25,7 +26,7 @@ class WeaponController extends Controller
      * @param  mixed $request
      * @return bool
      */
-    public function store(Request $request)
+    public function store(StoreWeaponRequest $request)
     {
         $weapon = new Weapon();
         $weapon->name = $request->weapon;

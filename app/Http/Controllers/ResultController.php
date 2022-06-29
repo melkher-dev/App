@@ -6,6 +6,7 @@ use App\Models\Result;
 use App\Models\Weapon;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreResultRequest;
 
 class ResultController extends Controller
 {
@@ -46,7 +47,7 @@ class ResultController extends Controller
      * @param  mixed $request
      * @return bool
      */
-    public function store(Request $request)
+    public function store(StoreResultRequest $request)
     {
         $result = new Result();
         $result->country_id = $request->country_id;
