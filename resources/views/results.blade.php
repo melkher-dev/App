@@ -42,7 +42,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    //таблица с соответсвием
+                    {{-- таблица с соответсвием --}}
                     <table class="table">
                         <tr>
                             <th class="px-4 py-2"></th>

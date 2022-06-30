@@ -19,6 +19,7 @@ class VoteController extends Controller
     {
         $this->voteService = $voteService;
     }
+
     /**
      * index
      *

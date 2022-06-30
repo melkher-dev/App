@@ -2,10 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\Weapon;
+use App\Repositories\WeaponRepository;
 
 class WeaponService
 {
+    private $weaponRepository;
+
+    public function __construct(WeaponRepository $weaponRepository)
+    {
+        $this->weaponRepository = $weaponRepository;
+    }
+
     /**
      * getWeapon
      *
@@ -14,7 +21,7 @@ class WeaponService
     public function getWeapon()
     {
         return [
-            'weapons' => Weapon::paginate(10),
+            'weapons' => $this->weaponRepository->getPaginatedWeapons(),
         ];
     }
 
@@ -26,8 +33,6 @@ class WeaponService
      */
     public function saveWeapon(array $data)
     {
-        $weapon = new Weapon();
-        $weapon->name = $data['weapon'];
-        $weapon->save();
+        $this->weaponRepository->saveWeapon($data);
     }
 }

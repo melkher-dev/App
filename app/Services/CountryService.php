@@ -2,10 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\Country;
+use App\Repositories\CountryRepository;
 
 class CountryService
 {
+    private $countryRepository;
+
+    public function __construct(CountryRepository $countryRepository)
+    {
+        $this->countryRepository = $countryRepository;
+    }
+
     /**
      * getCountry
      *
@@ -14,7 +21,7 @@ class CountryService
     public function getCountry()
     {
         return [
-            'countries' => Country::paginate(10),
+            'countries' => $this->countryRepository->getPaginatedCountries(),
         ];
     }
 
@@ -26,8 +33,6 @@ class CountryService
      */
     public function saveCountry(array $data)
     {
-        $country = new Country();
-        $country->name = $data['country'];
-        $country->save();
+        $this->countryRepository->saveCountry($data);
     }
 }

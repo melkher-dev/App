@@ -22,7 +22,7 @@ class WeaponController extends Controller
     /**
      * index
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     * @return void
      */
     public function index()
     {
@@ -32,8 +32,8 @@ class WeaponController extends Controller
     /**
      * store
      *
-     * @param \Illuminate\Http\Request $request
-     * @return bool
+     * @param \App\Http\Requests\StoreWeaponRequest $request
+     * @return void
      */
     public function store(StoreWeaponRequest $request)
     {
