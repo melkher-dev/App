@@ -1,9 +1,8 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\Result;
-use App\Models\Weapon;
-use App\Models\Country;
 use App\Repositories\CountryRepository;
 use App\Repositories\ResultRepository;
 use App\Repositories\WeaponRepository;
@@ -12,9 +11,11 @@ class ResultService
 {
     private $resultRepository;
 
-    public function __construct(ResultRepository $resultRepository,
-    CountryRepository $countryRepository, WeaponRepository $weaponRepository)
-    {
+    public function __construct(
+        ResultRepository $resultRepository,
+        CountryRepository $countryRepository,
+        WeaponRepository $weaponRepository
+    ) {
         $this->resultRepository = $resultRepository;
         $this->countryRepository = $countryRepository;
         $this->weaponRepository = $weaponRepository;
@@ -27,8 +28,8 @@ class ResultService
     public function getResult()
     {
         $data = [
-            'results' =>  $this->resultRepository->getPaginatedResults(),
-            'results_huy' =>  $this->resultRepository->getAllResults(),
+            'results' =>  $this->resultRepository->getPaginate(),
+            'results_huy' =>  $this->resultRepository->getAll(),
             'weapons' => $this->weaponRepository->getAllWeapons(),
             'countries' => $this->countryRepository->getAllCountries(),
         ];
@@ -63,6 +64,5 @@ class ResultService
         $result->weapon_id = $data['weapon_id'];
         $result->amount = $data['amount'];
         $result->save();
-
     }
 }

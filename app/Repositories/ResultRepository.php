@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Result;
 
-class ResultRepository
+class ResultRepository extends BaseRepository
 {
     private $model;
 
@@ -17,26 +17,6 @@ class ResultRepository
     public function __construct(Result $result)
     {
         $this->model = $result;
-    }
-
-    /**
-     * getPaginatedResults
-     *
-     * @return void
-     */
-    public function getPaginatedResults()
-    {
-        return $this->model->paginate(10);
-    }
-
-    /**
-     * getAllResults
-     *
-     * @return void
-     */
-    public function getAllResults()
-    {
-        return $this->model->all();
     }
 
     /**

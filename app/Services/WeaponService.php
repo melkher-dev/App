@@ -21,7 +21,7 @@ class WeaponService
     public function getWeapon()
     {
         return [
-            'weapons' => $this->weaponRepository->getPaginatedWeapons(),
+            'weapons' => $this->weaponRepository->getPaginate(),
         ];
     }
 

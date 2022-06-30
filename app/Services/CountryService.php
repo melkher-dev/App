@@ -21,7 +21,7 @@ class CountryService
     public function getCountry()
     {
         return [
-            'countries' => $this->countryRepository->getPaginatedCountries(),
+            'countries' => $this->countryRepository->getPaginate(),
         ];
     }
 

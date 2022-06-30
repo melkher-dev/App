@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Weapon;
 
-class WeaponRepository
+class WeaponRepository extends BaseRepository
 {
     private $model;
 
@@ -16,26 +16,6 @@ class WeaponRepository
     public function __construct(Weapon $weapon)
     {
         $this->model = $weapon;
-    }
-
-    /**
-     * getPaginatedWeapons
-     *
-     * @return void
-     */
-    public function getPaginatedWeapons()
-    {
-        return $this->model->paginate(10);
-    }
-
-    /**
-     * getAllWeapons
-     *
-     * @return void
-     */
-    public function getAllWeapons()
-    {
-        return $this->model->all();
     }
 
     /**

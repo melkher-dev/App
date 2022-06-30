@@ -2,11 +2,27 @@
 
 namespace App\Services;
 
-use App\Models\Weapon;
-use App\Models\Country;
+use App\Repositories\WeaponRepository;
+use App\Repositories\CountryRepository;
 
 class VoteService
 {
+    private $countryRepository;
+    private $weaponRepository;
+
+    /**
+     * __construct
+     *
+     * @return void
+     */
+    public function __construct(
+        CountryRepository $countryRepository,
+        WeaponRepository $weaponRepository
+    ) {
+        $this->countryRepository = $countryRepository;
+        $this->weaponRepository = $weaponRepository;
+    }
+
     /**
      * getData
      *
@@ -15,8 +31,8 @@ class VoteService
     public function getData()
     {
         return [
-            'countries' => Country::all(),
-            'weapons' => Weapon::all(),
+            'countries' => $this->countryRepository->getAll(),
+            'weapons' => $this->weaponRepository->getAll(),
         ];
     }
 }

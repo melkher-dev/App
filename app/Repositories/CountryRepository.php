@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Country;
 
-class CountryRepository
+class CountryRepository extends BaseRepository
 {
     private $model;
 
@@ -16,26 +16,6 @@ class CountryRepository
     public function __construct(Country $country)
     {
         $this->model = $country;
-    }
-
-    /**
-     * getPaginatedCountries
-     *
-     * @return void
-     */
-    public function getPaginatedCountries()
-    {
-        return $this->model->paginate(10);
-    }
-
-    /**
-     * getAllCountries
-     *
-     * @return void
-     */
-    public function getAllCountries()
-    {
-        return $this->model->all();
     }
 
     /**
