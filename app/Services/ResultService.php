@@ -25,13 +25,13 @@ class ResultService
      *
      * @return void
      */
-    public function getResult()
+    public function getResult(): array
     {
         $data = [
             'results' =>  $this->resultRepository->getPaginate(),
             'results_huy' =>  $this->resultRepository->getAll(),
-            'weapons' => $this->weaponRepository->getAllWeapons(),
-            'countries' => $this->countryRepository->getAllCountries(),
+            'weapons' => $this->weaponRepository->getAll(),
+            'countries' => $this->countryRepository->getAll(),
         ];
 
         //сумма всех amount
@@ -55,9 +55,9 @@ class ResultService
      * saveResult
      *
      * @param array $data
-     * @return bool
+     * @return void
      */
-    public function saveResult(array $data)
+    public function saveResult(array $data): void
     {
         $result = new Result();
         $result->country_id = $data['country_id'];

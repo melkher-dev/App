@@ -16,9 +16,9 @@ class WeaponService
     /**
      * getWeapon
      *
-     * @return void
+     * @return array
      */
-    public function getWeapon()
+    public function getWeapon(): array
     {
         return [
             'weapons' => $this->weaponRepository->getPaginate(),
@@ -31,7 +31,7 @@ class WeaponService
      * @param  mixed $data
      * @return void
      */
-    public function saveWeapon(array $data)
+    public function saveWeapon(array $data): void
     {
         $this->weaponRepository->saveWeapon($data);
     }

@@ -22,7 +22,7 @@ class CountryController extends Controller
     /**
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View
     {
         return view('countries', $this->countryService->getCountry());
     }
@@ -31,7 +31,7 @@ class CountryController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return bool
      */
-    public function store(StoreCountryRequest $request)
+    public function store(StoreCountryRequest $request): \Illuminate\Http\RedirectResponse
     {
         $this->countryService->saveCountry($request->only(
             'country'

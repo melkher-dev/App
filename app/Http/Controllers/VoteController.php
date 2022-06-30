@@ -25,7 +25,7 @@ class VoteController extends Controller
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View
     {
         return view('votes', $this->voteService->getData());
     }

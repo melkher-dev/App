@@ -26,9 +26,9 @@ class VoteService
     /**
      * getData
      *
-     * @return void
+     * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         return [
             'countries' => $this->countryRepository->getAll(),

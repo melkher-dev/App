@@ -6,7 +6,7 @@ use App\Models\Weapon;
 
 class WeaponRepository extends BaseRepository
 {
-    private $model;
+    public $model;
 
     /**
      * construct
@@ -24,7 +24,7 @@ class WeaponRepository extends BaseRepository
      * @param array $data
      * @return void
      */
-    public function saveWeapon(array $data)
+    public function saveWeapon(array $data): void
     {
         $this->model->name = $data['weapon'];
         $this->model->save();

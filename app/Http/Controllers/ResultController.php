@@ -24,7 +24,7 @@ class ResultController extends Controller
      *
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View
     {
         return view('results', $this->resultService->getResult());
     }
@@ -35,7 +35,7 @@ class ResultController extends Controller
      * @param  mixed $request
      * @return bool
      */
-    public function store(StoreResultRequest $request)
+    public function store(StoreResultRequest $request): \Illuminate\Routing\Redirector
     {
         $this->resultService->saveResult($request->only(
             'country_id',

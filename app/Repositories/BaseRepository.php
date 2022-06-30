@@ -2,16 +2,17 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class BaseRepository
 {
-    private $model;
-
     /**
      * getAll
      *
-     * @return void
+     * @return Collection
      */
-    public function getAll()
+    public function getAll(): Collection
     {
         return $this->model->all();
     }
@@ -19,9 +20,9 @@ class BaseRepository
     /**
      * getPaginate
      *
-     * @return void
+     * @return LengthAwarePaginator
      */
-    public function getPaginate()
+    public function getPaginate(): LengthAwarePaginator
     {
         return $this->model->paginate(10);
     }

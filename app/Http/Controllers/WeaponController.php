@@ -22,9 +22,9 @@ class WeaponController extends Controller
     /**
      * index
      *
-     * @return void
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View
     {
         return view('weapons', $this->weaponService->getWeapon());
     }
@@ -33,9 +33,9 @@ class WeaponController extends Controller
      * store
      *
      * @param \App\Http\Requests\StoreWeaponRequest $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreWeaponRequest $request)
+    public function store(StoreWeaponRequest $request): \Illuminate\Http\RedirectResponse
     {
         $this->weaponService->saveWeapon($request->only(
             'weapon'

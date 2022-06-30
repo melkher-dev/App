@@ -6,7 +6,7 @@ use App\Models\Result;
 
 class ResultRepository extends BaseRepository
 {
-    private $model;
+    public $model;
 
     /**
      * __construct
@@ -25,7 +25,7 @@ class ResultRepository extends BaseRepository
      * @param  mixed $field
      * @return int
      */
-    public function getSum($field)
+    public function getSum($field): int
     {
         return $this->model->sum($field);
     }

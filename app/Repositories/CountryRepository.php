@@ -6,7 +6,7 @@ use App\Models\Country;
 
 class CountryRepository extends BaseRepository
 {
-    private $model;
+    public $model;
 
     /**
      * construct
@@ -24,7 +24,7 @@ class CountryRepository extends BaseRepository
      * @param array $data
      * @return void
      */
-    public function saveCountry(array $data)
+    public function saveCountry(array $data): void
     {
         $this->model->name = $data['country'];
         $this->model->save();

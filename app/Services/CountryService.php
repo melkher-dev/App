@@ -31,7 +31,7 @@ class CountryService
      * @param  mixed $data
      * @return void
      */
-    public function saveCountry(array $data)
+    public function saveCountry(array $data): void
     {
         $this->countryRepository->saveCountry($data);
     }
