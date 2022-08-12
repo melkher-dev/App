@@ -37,19 +37,25 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <table>
-                        <thead>
+                    <button id="cB"><img
+                            src="https://github.githubassets.com/images/icons/emoji/unicode/1f1fa-1f1e6.png"></button>
+                    <table id="countryTable">
+                        <div id="blueColor">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-2">{{ __('Country') }}</th>
+                                    <th class="px-4 py-2">{{ __('Created At') }}</th>
+                                </tr>
+                            </thead>
+                        </div>
+                        <div id="yellowColor">
+                            @foreach ($countries as $country)
                             <tr>
-                                <th class="px-4 py-2">{{ __('Country') }}</th>
-                                <th class="px-4 py-2">{{ __('Created At') }}</th>
+                                <td class="border px-4 py-2">{{ $country->name }}</td>
+                                <td class="border px-4 py-2">{{ $country->created_at }}</td>
                             </tr>
-                        </thead>
-                        @foreach ($countries as $country)
-                        <tr>
-                            <td class="border px-4 py-2">{{ $country->name }}</td>
-                            <td class="border px-4 py-2">{{ $country->created_at }}</td>
-                        </tr>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </table>
 
                     {{ $countries->links() }}
@@ -58,4 +64,24 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+    <script>
+        $(document).ready(function () {
+            $('#countryTable').DataTable({
+                lengthMenu: [
+                    [3, 10, 25, 50, -1],
+                    [3, 10, 25, 50, 'All'],
+                ],
+            });
+
+            $( "#cB" ).click(function() {
+                document.querySelector("#countryTable > thead").style['backgroundColor'] = 'blue';
+                document.querySelector("#countryTable > tbody").style['backgroundColor'] = 'yellow';
+            });
+
+        });
+    </script>
+    @endsection
+
 </x-app-layout>

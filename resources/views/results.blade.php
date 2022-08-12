@@ -9,24 +9,29 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-                    <table class="table">
-                        <thead>
+                    <button id="rB"><img
+                            src="https://github.githubassets.com/images/icons/emoji/unicode/1f1fa-1f1e6.png"></button>
+                    <table id="resultsTable" class="table">
+                        <div id="blueColor" style="background-color:blue">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-2">{{ __('Id') }}</th>
+                                    <th class="px-4 py-2">{{ __('Weapon') }}</th>
+                                    <th class="px-4 py-2">{{ __('Country') }}</th>
+                                    <th class="px-4 py-2">{{ __('Amount') }}</th>
+                                </tr>
+                            </thead>
+                        </div>
+                        <div id="yellowColor">
+                            @foreach ($results as $result)
                             <tr>
-                                <th class="px-4 py-2">{{ __('Id') }}</th>
-                                <th class="px-4 py-2">{{ __('Weapon') }}</th>
-                                <th class="px-4 py-2">{{ __('Country') }}</th>
-                                <th class="px-4 py-2">{{ __('Amount') }}</th>
+                                <td class="border px-4 py-2">{{ $result->id }}</td>
+                                <td class="border px-4 py-2">{{ $result->country->name }}</td>
+                                <td class="border px-4 py-2">{{ $result->weapon->name }}</td>
+                                <td class="border px-4 py-2">{{ $result->amount }}</td>
                             </tr>
-                        </thead>
-                        @foreach ($results as $result)
-                        <tr>
-                            <td class="border px-4 py-2">{{ $result->id }}</td>
-                            <td class="border px-4 py-2">{{ $result->country->name }}</td>
-                            <td class="border px-4 py-2">{{ $result->weapon->name }}</td>
-                            <td class="border px-4 py-2">{{ $result->amount }}</td>
-                        </tr>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </table>
 
                     {{ $results->links() }}
@@ -41,7 +46,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
                     {{-- таблица с соответсвием --}}
                     <table class="table">
                         <tr>
@@ -73,5 +77,23 @@
             </div>
         </div>
     </div>
+
+    @section('scripts')
+    <script>
+        $(document).ready(function () {
+                $('#resultsTable').DataTable({
+                    lengthMenu: [
+                        [3, 10, 25, 50, -1],
+                        [3, 10, 25, 50, 'All'],
+                    ],
+                });
+
+                $( "#rB" ).click(function() {
+                    document.querySelector("#resultsTable > thead").style['backgroundColor'] = 'blue';
+                    document.querySelector("#resultsTable > tbody").style['backgroundColor'] = 'yellow';
+                });
+            });
+    </script>
+    @endsection
 
 </x-app-layout>
